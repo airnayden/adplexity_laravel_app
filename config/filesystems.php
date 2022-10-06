@@ -30,6 +30,14 @@ return [
 
     'disks' => [
 
+        'adplexity' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/downloads'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),

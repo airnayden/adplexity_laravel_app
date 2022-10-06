@@ -1,6 +1,9 @@
 <?php
 
+use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\Web\Download as WebDownloadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +17,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // Redirect to Downloads list
+    return redirect('downloads/index');
 });
+
+// Routes for `Customer` management
+Route::get('downloads/index', [WebDownloadController::class, 'index'])->name('downloads.index_web');
+Route::get('downloads/store', [WebDownloadController::class, 'store'])->name('downloads.store_web');
