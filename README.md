@@ -5,12 +5,15 @@ Proof of concept Laravel app for downloading remote resources, using Jobs and tr
 ## Requirements
 PHP 8.1
 
+Composer v2
+
 ## Setup
 1. Clone the repo locally
 2. Edit `.env` with your DB credentials, `APP_KEY`, `APP_URL`, `ADPLEXITY_ALLOWED_FORMATS`.
 3. Run `./prepare.sh`. This script will fetch the latest files from the repository, clear cache, run migrations and install composer dependencies.
 4. Run `php artisan serve` to start the app.
 5. [Optional] To generate API docs - run `php ./generate_apidoc.php`. [`apidoc` is required!!!. Also you won't be able to view documentation, using `php artisan serve`. You need to open it on the app's domain.]
+6. The application does not include any demo data by default.
 
 ## Queue Workers
 In order to start the workers, simply run `./work_queues.sh`.
