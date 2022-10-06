@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\V1\Download as ApiDownloadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,5 +16,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['prefix' => 'v1/downloads'], function(Router $route) {
-
+    $route->get('index', [ApiDownloadController::class, 'index'])->name('downloads.index_api');
+    $route->post('store', [ApiDownloadController::class, 'store'])->name('downloads.store_api');
 });

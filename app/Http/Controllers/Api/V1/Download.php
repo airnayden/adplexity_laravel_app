@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Web;
+namespace App\Http\Controllers\Api\V1;
 
 use App\Actions\CreateDownload;
 use App\DataFactories\DownloadDataFactory;

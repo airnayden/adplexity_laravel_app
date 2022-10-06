@@ -33,7 +33,7 @@ return [
         'adplexity' => [
             'driver' => 'local',
             'root' => storage_path('app/public/downloads'),
-            'url' => env('APP_URL').'/storage',
+            'url' => env('APP_URL').'/downloads',
             'visibility' => 'public',
             'throw' => false,
         ],

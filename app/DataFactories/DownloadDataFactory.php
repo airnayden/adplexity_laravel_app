@@ -22,6 +22,8 @@ class DownloadDataFactory
             format: self::getFormatFromUrl($request->get('url')),
             url: $request->get('url'),
             status: DownloadStatusEnum::Pending->value,
+            internalFilename: null,
+            error: null,
             createdAt: null,
             updatedAt: null
         );

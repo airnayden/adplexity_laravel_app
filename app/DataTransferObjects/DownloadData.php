@@ -10,6 +10,8 @@ class DownloadData
      * @param string|null $format
      * @param string|null $url
      * @param string|null $status
+     * @param string|null $internalFilename
+     * @param string|null $error
      * @param string|null $createdAt
      * @param string|null $updatedAt
      */
@@ -19,6 +21,8 @@ class DownloadData
         public ?string $format,
         public ?string $url,
         public ?string $status,
+        public ?string $internalFilename,
+        public ?string $error,
         public ?string $createdAt,
         public ?string $updatedAt
     ) {
