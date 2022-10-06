@@ -21,7 +21,27 @@
         </div>
     </div>
 
-    <!-- Buttons -->
+    <!-- Errors -->
+    @if($errors->any())
+        <div class="row py-2">
+            <div class="alert alert-danger" role="alert">
+                @foreach ($errors->all() as $error)
+                    {{ $error }}<br/>
+                @endforeach
+            </div>
+        </div>
+    @endif
+
+    <!-- Success -->
+    @if(session()->has('message'))
+        <div class="row py-2">
+            <div class="alert alert-success">
+                {{ session()->get('message') }}
+            </div>
+        </div>
+    @endif
+
+    <!-- Buttons and quick add form -->
     <div class="row py-2">
         <div class="col-sm-4">
             <a href="{{ route('downloads.index_web') }}" type="button" class="btn btn-primary"><i class="fa fa-home"></i> {{ __('Home') }}</a>
@@ -29,13 +49,17 @@
         <div class="btn-group col-sm-4" role="group" aria-label="Add New Customer">
         </div>
         <div class="col-sm-4">
-            <div class="input-group">
-                <input type="text" id="downloadQuickAdd" name="url" class="form-control" placeholder="{{ __('adplexity.input_url') }}" aria-label="{{ __('adplexity.text_new_download') }}" aria-describedby="btnGroupAddon" value="">
-                <div class="input-group-append">
-                    <div class="input-group-text" id="btnGroupAddon">
-                        <button data-endpoint="{{ route('downloads.store_web') }}" class="btn btn-primary" id="downloadQuickAddButton">{{ __('adplexity.button_add') }}</button>
+            <form id="newDownloadForm" action="{{ route('downloads.store_web') }}" method="POST">
+                @csrf
+                <div class="input-group">
+                    <input type="text" id="downloadQuickAdd" name="url" class="form-control" placeholder="{{ __('adplexity.input_url') }}" aria-label="{{ __('adplexity.text_new_download') }}" aria-describedby="btnGroupAddon" value="">
+                    <div class="input-group-append">
+                        <div class="input-group-text" id="btnGroupAddon">
+                            <button data-endpoint="{{ route('downloads.store_web') }}" type="submit" class="btn btn-primary" id="downloadQuickAddButton">{{ __('adplexity.button_add') }}</button>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
+

@@ -11,8 +11,12 @@ return [
     'text_created_at' => 'Added',
     'text_updated_at' => 'Updated',
     'text_download' => 'Download',
+    'text_add_success' => 'New download was queued!',
 
     'input_url' => 'File URL',
 
-    'button_add' => 'Add'
+    'button_add' => 'Add',
+
+    'error_unsupported_format' => 'Unsupported file format! Supported formats are: :formats!',
+    'error_no_downloads' => 'No records available!',
 ];

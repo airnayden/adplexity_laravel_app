@@ -24,6 +24,12 @@
                 {{ __('adplexity.text_status') }}
             </th>
             <th>
+                {{ __('adplexity.text_created_at') }}
+            </th>
+            <th>
+                {{ __('adplexity.text_updated_at') }}
+            </th>
+            <th>
                 {{ __('adplexity.text_download') }}
             </th>
         </tr>

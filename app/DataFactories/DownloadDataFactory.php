@@ -1,20 +1,22 @@
 <?php
 
-namespace App\Http\DataFactories;
+namespace App\DataFactories;
 
 use App\Enums\DownloadStatusEnum;
-use App\Http\DataTransferObjects\DownloadData;
-use App\Http\Requests\DownloadCreateRequest;
+use App\DataTransferObjects\DownloadData;
+use App\Http\Requests\DownloadCreateRequestApi;
+use App\Http\Requests\DownloadCreateRequestWeb;
+use Illuminate\Validation\ValidationException;
 
 class DownloadDataFactory
 {
     /**
-     * @param DownloadCreateRequest $request
+     * @param DownloadCreateRequestWeb|DownloadCreateRequestApi $request
      * @return DownloadData
      */
-    public static function fromCreateRequest(DownloadCreateRequest $request): DownloadData
+    public static function fromCreateRequest(DownloadCreateRequestWeb|DownloadCreateRequestApi $request): DownloadData
     {
-        return new DownloadData(
+        $downloadData = new DownloadData(
             id: null,
             filename: self::getFileNameFromUrl($request->get('url')),
             format: self::getFormatFromUrl($request->get('url')),
@@ -23,6 +25,19 @@ class DownloadDataFactory
             createdAt: null,
             updatedAt: null
         );
+
+        // Validate Format
+        $formats = explode(',', config('adplexity.allowed_formats'));
+
+        if (!in_array($downloadData->format, $formats)) {
+            throw ValidationException::withMessages([
+                'url' => trans('adplexity.error_unsupported_format', [
+                    'formats' => config('adplexity.allowed_formats')
+                ])
+            ]);
+        }
+
+        return $downloadData;
     }
 
     /**

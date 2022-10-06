@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class DownloadCreateRequest extends FormRequest
+class DownloadCreateRequestApi extends DownloadCreateRequestBase
 {
     /**
      * @param Validator $validator
@@ -19,15 +19,5 @@ class DownloadCreateRequest extends FormRequest
             'message'   => 'Validation errors',
             'data'      => $validator->errors()
         ]));
-    }
-
-    /**
-     * @return array
-     */
-    public function rules(): array
-    {
-        return [
-            'url' => ['required', 'string', 'url']
-        ];
     }
 }

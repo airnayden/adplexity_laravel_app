@@ -23,4 +23,4 @@ Route::get('/', function () {
 
 // Routes for `Customer` management
 Route::get('downloads/index', [WebDownloadController::class, 'index'])->name('downloads.index_web');
-Route::get('downloads/store', [WebDownloadController::class, 'store'])->name('downloads.store_web');
+Route::post('downloads/store', [WebDownloadController::class, 'store'])->name('downloads.store_web');
