@@ -27,50 +27,54 @@ class Downloads extends Command
     /**
      * Execute the console command.
      *
-     * @return void
+     *
      */
-    public function handle(): void
+    public function handle()
     {
         $action = $this->argument('action');
+        $code = 0;
 
         switch ($action) {
             case 'help':
-                $this->help();
+                $code = $this->help();
                 break;
             case 'index':
-                $this->index();
+                $code = $this->index();
                 break;
             case 'store':
-                $this->store();
+                $code = $this->store();
                 break;
             default:
                 $this->error(trans('adplexity.error_cli_unknown_action', [
                     'action' => $action
                 ]));
+                $code = 1;
         }
+
+        return $code;
     }
 
     /**
      * @return void
      */
-    private function index(): void
+    private function index()
     {
         $this->table(
             $this->listTableHeader(),
             DownloadResource::collection(Download::get())->toArray(null)
         );
+
+        return 0;
     }
 
-    /**
-     * @return void
-     */
-    private function store(): void
+    private function store()
     {
         $fileUrl = $this->argument('url');
 
         // Check if we have a valid URL
         if (empty($fileUrl) || !filter_var($fileUrl, FILTER_VALIDATE_URL)) {
             $this->error(trans('adplexity.error_cli_url_argument'));
+            return 1;
         }
 
         try {
@@ -83,6 +87,7 @@ class Downloads extends Command
             $this->index();
         } catch (\Throwable $e) {
             $this->error($e->getMessage());
+            return 1;
         }
     }
 
