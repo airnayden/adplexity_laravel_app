@@ -13,6 +13,8 @@ return [
     'text_download' => 'Download',
     'text_add_success' => 'New download was queued!',
     'text_error' => 'Error',
+    'text_api_docs' => 'API Documentation',
+    'text_home' => 'Home',
 
     'input_url' => 'File URL',
 

@@ -43,10 +43,9 @@
 
     <!-- Buttons and quick add form -->
     <div class="row py-2">
-        <div class="col-sm-4">
-            <a href="{{ route('downloads.index_web') }}" type="button" class="btn btn-primary"><i class="fa fa-home"></i> {{ __('Home') }}</a>
-        </div>
-        <div class="btn-group col-sm-4" role="group" aria-label="Add New Customer">
+        <div class="col-sm-8">
+            <a href="{{ route('downloads.index_web') }}" type="button" class="btn btn-primary"><i class="fa fa-home"></i> {{ __('adplexity.text_home') }}</a>
+            <a href="/docs" target="_blank" type="button" class="btn btn-primary"><i class="fa fa-home"></i> {{ __('adplexity.text_api_docs') }}</a>
         </div>
         <div class="col-sm-4">
             <form id="newDownloadForm" action="{{ route('downloads.store_web') }}" method="POST">

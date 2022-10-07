@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
+composer i -o && \
 php artisan clear-compiled && \
 git pull && \
-composer i -o && \
 php artisan clear-compiled && \
 php artisan config:cache && \
 php artisan route:cache && \
