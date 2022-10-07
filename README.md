@@ -43,8 +43,11 @@ The application comes with a CLI command for monitoring and adding new downloads
 
 #### CLI Usage
 `php artisan downloads` ->  (Defaults to the `help` action)
+
 `php artisan downloads help` -> Prints a table with a list of available actions and descriptions.
+
 `php artisan downloads index` -> Will print a table, listing all queued downloads with their status and other useful data.
+
 `php artisan downloads store https://URL_TO_FILE_TO_DOWNLOAD` -> Adds a file to the download queue and if OK -> will display the index table.
 
 ## API Documentation
