@@ -113,7 +113,7 @@ abstract class TestCase extends BaseTestCase
      * @return void
      * @throws \Illuminate\Validation\ValidationException
      */
-    protected function downloadFileJobSanityBase(string $url, bool $negative = false)
+    protected function downloadFileJobSanityBase(string $url, bool $negative = false): Download
     {
         $this->prepareForCreateDownloadActionSanityCheck();
 
@@ -123,6 +123,10 @@ abstract class TestCase extends BaseTestCase
         // Refresh download
         $status = $negative ? DownloadStatusEnum::Error->value : DownloadStatusEnum::Complete->value;
 
-        $this->assertEquals($downloadObject->fresh()->status->value, $status);
+        $refreshed = $downloadObject->fresh();
+
+        $this->assertEquals($refreshed->status->value, $status);
+
+        return $refreshed;
     }
 }
