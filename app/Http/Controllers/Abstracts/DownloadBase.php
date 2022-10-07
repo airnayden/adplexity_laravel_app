@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Abstracts;
 
 use App\Actions\CreateDownload;
+use App\Actions\DoDownload;
 use App\DataFactories\DownloadDataFactory;
 use App\Enums\DownloadStatusEnum;
 use App\Exceptions\Errors\StateConflictException;
@@ -34,12 +35,6 @@ abstract class DownloadBase extends BaseController
      */
     public function downloadBase(DownloadRequestWeb|DownloadRequestApi $request, int $id): StreamedResponse
     {
-        $downloadObject = DownloadModel::findOrFail($id);
-
-        if ($downloadObject->status != DownloadStatusEnum::Complete) {
-            throw new StateConflictException(trans('adplexity.error_download_not_complete'));
-        }
-
-        return Storage::disk('adplexity')->download($downloadObject->internal_filename, $downloadObject->filename);
+        return DoDownload::execute($id);
     }
 }
