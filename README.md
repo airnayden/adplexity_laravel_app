@@ -82,6 +82,8 @@ Because the application here runs on a shared hosting, jobs are not operational.
 
 `app/Http/Models`
 
+`app/Http/Resources`
+
 `database/Migrations`
 
 `database/seeders`

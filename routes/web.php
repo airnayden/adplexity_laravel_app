@@ -20,6 +20,9 @@ Route::get('/', function () {
     return redirect('downloads/index');
 });
 
-// Routes for `Customer` management
+// Routes for `Download` management
 Route::get('downloads/index', [WebDownloadController::class, 'index'])->name('downloads.index_web');
 Route::post('downloads/store', [WebDownloadController::class, 'store'])->name('downloads.store_web');
+Route::get('downloads/{id}/download', [WebDownloadController::class, 'download'])
+    ->whereNumber('id')
+    ->name('downloads.download_web');

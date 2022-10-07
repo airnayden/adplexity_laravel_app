@@ -18,4 +18,11 @@ class Download extends Model
     protected $casts = [
         'status' => DownloadStatusEnum::class
     ];
+
+    /**
+     * @var string[]
+     */
+    protected $hidden = [
+        'internal_filename'
+    ];
 }

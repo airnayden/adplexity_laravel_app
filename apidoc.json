@@ -3,6 +3,6 @@
     "version": "1.0.0",
     "description": "A list with endpoints, parameters and responses.",
     "title": "AdPlexity - REST API Documentation",
-    "url" : "https://adplexity-laravel.drpanchev.com/api/",
-    "sampleUrl": "https://adplexity-laravel.drpanchev.com/api/"
+    "url" : "https://adplexity-laravel.drpanchev.com/api/v1/",
+    "sampleUrl": "https://adplexity-laravel.drpanchev.com/api/v1/"
 }

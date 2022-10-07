@@ -63,6 +63,7 @@ class DownloadFileJob implements ShouldQueue
     {
         // Fetch the object
         $downloadObject = Download::findOrFail($this->downloadId);
+        $downloadObject->status = DownloadStatusEnum::Error;
         $downloadObject->error = $exception->getMessage();
         $downloadObject->save();
     }

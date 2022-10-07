@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Web;
 
+use App\Http\Requests\Abstracts\DownloadCreateRequestBase;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Support\Facades\Redirect;
 

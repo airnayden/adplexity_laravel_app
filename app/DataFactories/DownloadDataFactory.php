@@ -4,8 +4,9 @@ namespace App\DataFactories;
 
 use App\Enums\DownloadStatusEnum;
 use App\DataTransferObjects\DownloadData;
-use App\Http\Requests\DownloadCreateRequestApi;
-use App\Http\Requests\DownloadCreateRequestWeb;
+use App\Http\Requests\Api\DownloadCreateRequestApi;
+use App\Http\Requests\Web\DownloadCreateRequestWeb;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Validation\ValidationException;
 
 class DownloadDataFactory
@@ -13,6 +14,7 @@ class DownloadDataFactory
     /**
      * @param DownloadCreateRequestWeb|DownloadCreateRequestApi $request
      * @return DownloadData
+     * @throws ValidationException|\HttpResponseException
      */
     public static function fromCreateRequest(DownloadCreateRequestWeb|DownloadCreateRequestApi $request): DownloadData
     {
@@ -32,11 +34,13 @@ class DownloadDataFactory
         $formats = explode(',', config('adplexity.allowed_formats'));
 
         if (!in_array($downloadData->format, $formats)) {
-            throw ValidationException::withMessages([
+            $errors = [
                 'url' => trans('adplexity.error_unsupported_format', [
                     'formats' => config('adplexity.allowed_formats')
                 ])
-            ]);
+            ];
+
+            throw ValidationException::withMessages($errors);
         }
 
         return $downloadData;
@@ -44,23 +48,23 @@ class DownloadDataFactory
 
     /**
      * @param string $url
-     * @return string
+     * @return ?string
      */
-    private static function getFileNameFromUrl(string $url): string
+    private static function getFileNameFromUrl(string $url): ?string
     {
         $fileData = pathinfo($url);
 
-        return $fileData['basename'];
+        return $fileData['basename'] ?? null;
     }
 
     /**
      * @param string $url
-     * @return string
+     * @return ?string
      */
-    private static function getFormatFromUrl(string $url): string
+    private static function getFormatFromUrl(string $url): ?string
     {
         $fileData = pathinfo($url);
 
-        return $fileData['extension'];
+        return $fileData['extension'] ?? null;
     }
 }
