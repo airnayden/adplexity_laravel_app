@@ -3,7 +3,21 @@
 Proof of concept Laravel app for downloading remote resources, using Jobs and tracking progress.
 
 ## How it works
+This application lets you add a file to the download queue. 
+Only certain file formats are allowed. By default: `pdf,zip,rar,7zip,tar,gz,doc,docx,mp3,wav,avi,png,jpg,jpeg,webp,txt,rtf,sql`.
 
+1. The user adds a valid link to a file for download.
+2. The information is written in the database, storing the URL, file name, format and status (`Pending` by default) in the form of a `Download` object (represented by a `Download` model).
+3. A Job is dispatched to the queue and will be processed by the workers.
+4. When the job begins, the file will be put into `Downloading` status.
+5. If the Job fails, then the `Download` object status will be changed to `Error`
+6. If the Job succeeds, then the `Download` object status will be changed to `Complete`
+7. If the `Download` object has `Complete` status, then it can be downloaded.
+
+### How to use
+Adding and listing queued downloads can be done either from the REST API (see docs), Web frontend or CLI (see CLI docs).
+
+File download can be done only via REST API or Web frontend.
 
 ## Requirements
 PHP 8.1
