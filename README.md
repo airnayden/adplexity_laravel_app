@@ -57,6 +57,7 @@ Example for the hosted demo: https://adplexity-laravel.drpanchev.com/docs
 ## Testing
 Run the following commands for tests:
 1. Run `php artisan test`
+2. Note: the application is missing `feature` tests, because they were not part of the task, but might be added in the incoming days, because it's fun to write them.
 
 ## Demo
 You can see a demo of the app here: https://adplexity-laravel.drpanchev.com/

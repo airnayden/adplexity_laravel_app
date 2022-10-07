@@ -2,9 +2,6 @@
 
 namespace Tests\Unit;
 
-use App\Actions\CreateDownload;
-use App\DataFactories\DownloadDataFactory;
-use App\Enums\DownloadStatusEnum;
 use Tests\TestCase;
 
 class DownloadFileJobTest extends TestCase
