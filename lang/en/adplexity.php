@@ -22,6 +22,10 @@ return [
     'error_no_downloads' => 'No records available!',
     'error_not_found' => 'Entry not found!',
     'error_download_not_complete' => 'This file can not be downloaded, because download is not yet complete!',
+    'error_cli_unknown_action' => 'Unknown action ":action"!',
+    'error_cli_url_argument' => 'Please, provide a valid URL to the file!',
+
+    'cli_success_add' => 'New download added to the queue!',
 
     'http_error_unahuthorized' => 'Unauthorized',
     'http_error_forbidden' => 'Forbidden',

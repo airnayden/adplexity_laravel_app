@@ -6,7 +6,6 @@ use App\Enums\DownloadStatusEnum;
 use App\DataTransferObjects\DownloadData;
 use App\Http\Requests\Api\DownloadCreateRequestApi;
 use App\Http\Requests\Web\DownloadCreateRequestWeb;
-use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Validation\ValidationException;
 
 class DownloadDataFactory
@@ -18,11 +17,21 @@ class DownloadDataFactory
      */
     public static function fromCreateRequest(DownloadCreateRequestWeb|DownloadCreateRequestApi $request): DownloadData
     {
+        return self::createDataObjectFromUrl($request->get('url'));
+    }
+
+    /**
+     * @param string $url
+     * @return DownloadData
+     * @throws ValidationException
+     */
+    public static function createDataObjectFromUrl(string $url): DownloadData
+    {
         $downloadData = new DownloadData(
             id: null,
-            filename: self::getFileNameFromUrl($request->get('url')),
-            format: self::getFormatFromUrl($request->get('url')),
-            url: $request->get('url'),
+            filename: self::getFileNameFromUrl($url),
+            format: self::getFormatFromUrl($url),
+            url: $url,
             status: DownloadStatusEnum::Pending->value,
             internalFilename: null,
             error: null,

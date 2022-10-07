@@ -42,8 +42,10 @@ The application is fully localised and can be easily translated to other languag
 The application comes with a CLI command for monitoring and adding new downloads to the queue.
 
 #### CLI Usage
-`php artisan downloads` -> Will print a table, listing all queued downloads with their status and other useful data.
-
+`php artisan downloads` ->  (Defaults to the `help` action)
+`php artisan downloads help` -> Prints a table with a list of available actions and descriptions.
+`php artisan downloads index` -> Will print a table, listing all queued downloads with their status and other useful data.
+`php artisan downloads store https://URL_TO_FILE_TO_DOWNLOAD` -> Adds a file to the download queue and if OK -> will display the index table.
 
 ## API Documentation
 Documentation for the API can be found under `/docs` in your app URL.
