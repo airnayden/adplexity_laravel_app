@@ -59,6 +59,13 @@ You can see a demo of the app here: https://adplexity-laravel.drpanchev.com/
 #### Demo Notes: 
 Because the application here runs on a shared hosting, jobs are not operational. The only available functionality for testing is adding a new file for downloads and listing them. Using the `sync` driver for processing the queue would make the web app slow, so it's not in use.
 
+### Future Improvements
+1. Better error handler.
+2. Search / pagination / filtering / sorting of the listings for both API and Web.
+3. Update / Delete of links.
+4. Add support for RabbitMQ as queue driver.
+5. Add configurable limitations for downloadable file sizes.
+
 ## Code, which might be of interest, is located under:
 `app/Console/Commands`
 

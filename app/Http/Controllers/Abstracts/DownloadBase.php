@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Abstracts;
 
 use App\Actions\CreateDownload;
 use App\DataFactories\DownloadDataFactory;
+use App\Enums\DownloadStatusEnum;
+use App\Exceptions\Errors\StateConflictException;
 use App\Http\Requests\Api\DownloadCreateRequestApi;
 use App\Http\Requests\Api\DownloadRequestApi;
 use App\Http\Requests\Web\DownloadCreateRequestWeb;
@@ -33,6 +35,11 @@ abstract class DownloadBase extends BaseController
     public function downloadBase(DownloadRequestWeb|DownloadRequestApi $request, int $id): StreamedResponse
     {
         $downloadObject = DownloadModel::findOrFail($id);
+
+        if ($downloadObject->status != DownloadStatusEnum::Complete) {
+            throw new StateConflictException(trans('adplexity.error_download_not_complete'));
+        }
+
         return Storage::disk('adplexity')->download($downloadObject->internal_filename, $downloadObject->filename);
     }
 }

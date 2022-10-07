@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Exceptions\Errors\StateConflictException;
 use App\Http\Controllers\Abstracts\DownloadBase;
 use App\Http\Requests\Api\DownloadIndexRequestApi;
 use App\Http\Requests\Api\DownloadRequestApi;
@@ -29,13 +30,13 @@ class Download extends DownloadBase
     /**
      * @apiGroup Downloads
      * @apiVersion 1.0.0
-     * @param DownloadIndexRequestApi $request
-     * @return ResourceCollection
-     *@api {get} downloads/store   01. Index Files
+     * @api {get} downloads/index   01. Index Files
      * @apiDescription Returns a list of `Download` objects.
      * @apiSuccess  {object[]}           data  Array of `Download` objects
      * @apiUse DownloadObjectResponse
      *
+     * @param DownloadIndexRequestApi $request
+     * @return ResourceCollection
      */
     public function index(DownloadIndexRequestApi $request): ResourceCollection
     {
@@ -45,7 +46,7 @@ class Download extends DownloadBase
     /**
      * @apiGroup Downloads
      * @apiVersion 1.0.0
-     * @api {get} downloads/store   02. Queue a new file download.
+     * @api {post} downloads/store   02. Queue a new file download.
      * @apiDescription Creates a new file record, validates the format and dispatches a job for async downloading.
      * @apiParam {string}       url Valid URL to a file.
      * @apiSuccess  {object}           data  Download Object
@@ -63,16 +64,14 @@ class Download extends DownloadBase
     /**
      * @apiGroup Downloads
      * @apiVersion 1.0.0
-     * @param DownloadRequestApi $request
-     * @param int $id
-     * @return \Symfony\Component\HttpFoundation\StreamedResponse
-     *@api {get} downloads/:id/download   03. Download a file
+     * @api {get} downloads/:id/download   03. Download a file
      * @apiDescription Downloads a file
      * @apiParam {integer}       id Valid `Download` object ID
      *
      * @param DownloadRequestApi $request
      * @param int $id
      * @return StreamedResponse
+     * @throws StateConflictException
      */
     public function download(DownloadRequestApi $request, int $id): StreamedResponse
     {

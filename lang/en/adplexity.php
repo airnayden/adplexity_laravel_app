@@ -21,6 +21,7 @@ return [
     'error_unsupported_format' => 'Unsupported file format! Supported formats are: :formats!',
     'error_no_downloads' => 'No records available!',
     'error_not_found' => 'Entry not found!',
+    'error_download_not_complete' => 'This file can not be downloaded, because download is not yet complete!',
 
     'http_error_unahuthorized' => 'Unauthorized',
     'http_error_forbidden' => 'Forbidden',
