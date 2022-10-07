@@ -4,7 +4,7 @@ Proof of concept Laravel app for downloading remote resources, using Jobs and tr
 
 ## How it works
 This application lets you add a file to the download queue. 
-Only certain file formats are allowed. By default: `pdf,zip,rar,7zip,tar,gz,doc,docx,mp3,wav,avi,png,jpg,jpeg,webp,txt,rtf,sql`.
+Only certain file formats are allowed. Defaults: `pdf,zip,rar,7zip,tar,gz,doc,docx,mp3,wav,avi,png,jpg,jpeg,webp,txt,rtf,sql`.
 
 1. The user adds a valid link to a file for download.
 2. The information is written in the database, storing the URL, file name, format and status (`Pending` by default) in the form of a `Download` object (represented by a `Download` model).
